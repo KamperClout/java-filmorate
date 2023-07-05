@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NonNull;
+
 import java.time.LocalDate;
 
 
@@ -16,6 +17,6 @@ public class User {
     @NonNull
     private String login;
     private String name;
-    @JsonFormat(pattern ="yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
 }

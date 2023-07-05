@@ -66,7 +66,7 @@ public class FilmControllerTest {
                 .duration(200)
                 .releaseDate(LocalDate.of(2015, 4, 15))
                 .build();
-         assertThrows(ValidationException.class,
+        assertThrows(ValidationException.class,
                 () -> filmController.create(film));
     }
 
@@ -102,7 +102,7 @@ public class FilmControllerTest {
                 .duration(200)
                 .releaseDate(LocalDate.of(1800, 4, 15))
                 .build();
-         assertThrows(ValidationException.class,
+        assertThrows(ValidationException.class,
                 () -> filmController.create(film));
     }
 
@@ -118,14 +118,15 @@ public class FilmControllerTest {
         Film updateFilm = film.toBuilder().id(film.getId()).name("hehe17").duration(150).build();
         Film updated = filmController.update(updateFilm);
         assertEquals(1, filmController.getFilms().size());
-        assertEquals("hehe17",updated.getName());
-        assertEquals(150,updated.getDuration());
-        assertEquals(LocalDate.of(2015,4,15),updated.getReleaseDate());
-        assertEquals("description",updated.getDescription());
+        assertEquals("hehe17", updated.getName());
+        assertEquals(150, updated.getDuration());
+        assertEquals(LocalDate.of(2015, 4, 15), updated.getReleaseDate());
+        assertEquals("description", updated.getDescription());
 
     }
+
     @Test
-    void updateNotFoundFilm(){
+    void updateNotFoundFilm() {
         Film film = Film.builder()
                 .name("name")
                 .description("description")
@@ -134,11 +135,12 @@ public class FilmControllerTest {
                 .build();
         filmController.create(film);
         Film updateFilm = film.toBuilder().id(2).name("hehe17").duration(150).build();
-       assertThrows(ResponseStatusException.class,
-                ()->filmController.update(updateFilm));
+        assertThrows(ResponseStatusException.class,
+                () -> filmController.update(updateFilm));
     }
+
     @Test
-    void shouldGetAll(){
+    void shouldGetAll() {
         Film film = Film.builder()
                 .name("name")
                 .description("description")
@@ -148,7 +150,7 @@ public class FilmControllerTest {
         Film film2 = film.toBuilder().id(2).name("hehe17").duration(150).build();
         filmController.create(film);
         filmController.create(film2);
-        assertEquals(2,filmController.getFilms().size());
+        assertEquals(2, filmController.getFilms().size());
     }
 
 }
