@@ -4,15 +4,18 @@ package controller;
 import org.junit.jupiter.api.Test;
 import org.springframework.web.server.ResponseStatusException;
 import ru.yandex.practicum.filmorate.controllers.UserController;
+import ru.yandex.practicum.filmorate.exception.UserNotFoundException;
 import ru.yandex.practicum.filmorate.exception.ValidationException;
 import ru.yandex.practicum.filmorate.model.User;
+import ru.yandex.practicum.filmorate.service.UserService;
+import ru.yandex.practicum.filmorate.storage.user.InMemoryUserStorage;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
 
 public class UserControllerTest {
-    private final UserController userController = new UserController();
+    private final UserController userController = new UserController(new UserService(new InMemoryUserStorage()));
 
     @Test
     void create() {
@@ -112,7 +115,7 @@ public class UserControllerTest {
         userController.create(user);
         User userUpdate = user.toBuilder().id(user.getId()).email("pavel13@mail.ru").login("so4l").build();
         userController.update(userUpdate);
-        assertEquals(1, userController.getUsers().size());
+        assertEquals(1, userController.findAll().size());
         assertEquals("Pavel", userUpdate.getName());
         assertEquals("pavel13@mail.ru", userUpdate.getEmail());
         assertEquals("so4l", userUpdate.getLogin());
@@ -129,7 +132,7 @@ public class UserControllerTest {
                 .build();
         userController.create(user);
         User userUpdate = user.toBuilder().id(2).email("pavel13@mail.ru").login("so4l").build();
-        assertThrows(ResponseStatusException.class,
+        assertThrows(UserNotFoundException.class,
                 () -> userController.update(userUpdate));
     }
 
@@ -144,6 +147,6 @@ public class UserControllerTest {
         userController.create(user);
         User user2 = user.toBuilder().id(2).email("pavel13@mail.ru").login("so4l").build();
         userController.create(user2);
-        assertEquals(2, userController.getUsers().size());
+        assertEquals(2, userController.findAll().size());
     }
 }
