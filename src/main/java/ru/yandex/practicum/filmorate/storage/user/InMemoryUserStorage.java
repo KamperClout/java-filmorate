@@ -20,7 +20,7 @@ public class InMemoryUserStorage implements UserStorage {
     public User create(User user) {
         validate(user);
         user.setId(++userId);
-        if (Optional.ofNullable(user.getName()).isEmpty() || user.getName().isBlank()) {
+        if (user.getName() == null || user.getName().isBlank()) {
             user.setName(user.getLogin());
         }
         users.put(user.getId(), user);
@@ -35,7 +35,7 @@ public class InMemoryUserStorage implements UserStorage {
                     + " не найден");
         }
         validate(user);
-        if (Optional.ofNullable(user.getName()).isEmpty()) {
+        if (user.getName() == null || user.getName().isBlank()) {
             user.setName(user.getLogin());
         }
         users.put(user.getId(), user);

@@ -23,7 +23,7 @@ public class User {
     private String name;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
-    Set<Integer> friends;
+    private Set<Integer> friends;
 
     public User() {
         this.friends = new HashSet<>();

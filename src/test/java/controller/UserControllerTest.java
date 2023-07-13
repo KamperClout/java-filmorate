@@ -2,7 +2,6 @@ package controller;
 
 
 import org.junit.jupiter.api.Test;
-import org.springframework.web.server.ResponseStatusException;
 import ru.yandex.practicum.filmorate.controllers.UserController;
 import ru.yandex.practicum.filmorate.exception.UserNotFoundException;
 import ru.yandex.practicum.filmorate.exception.ValidationException;
