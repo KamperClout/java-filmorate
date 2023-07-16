@@ -2,17 +2,22 @@ package controller;
 
 
 import org.junit.jupiter.api.Test;
-import org.springframework.web.server.ResponseStatusException;
 import ru.yandex.practicum.filmorate.controllers.FilmController;
+import ru.yandex.practicum.filmorate.exception.FilmNotFoundException;
 import ru.yandex.practicum.filmorate.exception.ValidationException;
 import ru.yandex.practicum.filmorate.model.Film;
+import ru.yandex.practicum.filmorate.service.FilmService;
+import ru.yandex.practicum.filmorate.storage.film.InMemoryFilmStorage;
+import ru.yandex.practicum.filmorate.storage.user.InMemoryUserStorage;
+
 
 import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class FilmControllerTest {
-    private final FilmController filmController = new FilmController();
+    private final FilmController filmController = new FilmController(new FilmService(new InMemoryFilmStorage(),
+            new InMemoryUserStorage()));
 
 
     @Test
@@ -113,7 +118,7 @@ public class FilmControllerTest {
         filmController.create(film);
         Film updateFilm = film.toBuilder().id(film.getId()).name("hehe17").duration(150).build();
         Film updated = filmController.update(updateFilm);
-        assertEquals(1, filmController.getFilms().size());
+        assertEquals(1, filmController.findAll().size());
         assertEquals("hehe17", updated.getName());
         assertEquals(150, updated.getDuration());
         assertEquals(LocalDate.of(2015, 4, 15), updated.getReleaseDate());
@@ -131,7 +136,7 @@ public class FilmControllerTest {
                 .build();
         filmController.create(film);
         Film updateFilm = film.toBuilder().id(2).name("hehe17").duration(150).build();
-        assertThrows(ResponseStatusException.class,
+        assertThrows(FilmNotFoundException.class,
                 () -> filmController.update(updateFilm));
     }
 
@@ -146,7 +151,7 @@ public class FilmControllerTest {
         Film film2 = film.toBuilder().id(2).name("hehe17").duration(150).build();
         filmController.create(film);
         filmController.create(film2);
-        assertEquals(2, filmController.getFilms().size());
+        assertEquals(2, filmController.findAll().size());
     }
 
 }
