@@ -22,8 +22,11 @@ public class Film {
     private LocalDate releaseDate;
     private int duration;
     private Set<Integer> likes;
+    private MPA mpa;
+    private Set<Genre> genres;
 
     public Film() {
         this.likes = new HashSet<>();
+        this.genres = new HashSet<>();
     }
 }
