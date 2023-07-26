@@ -12,6 +12,3 @@ VALUES (1, 'G'),
        (4, 'R'),
        (5, 'NC-17');
 
-/*INSERT INTO users(id,name,login,email,birthday)
-VALUES (1,'rfr','erfrf','ewfiwj@mail.ru','2000-09-20')
-VALUES (2,'efwr','eref','ewfwj@mail.ru','2000-07-20')*/

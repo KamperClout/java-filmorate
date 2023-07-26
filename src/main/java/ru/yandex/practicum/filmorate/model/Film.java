@@ -5,7 +5,6 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NonNull;
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -17,7 +16,6 @@ import java.util.Set;
 @Builder(toBuilder = true)
 public class Film {
     private int id;
-    @NonNull
     private String name;
     private String description;
     @JsonFormat(pattern = "yyyy-MM-dd")

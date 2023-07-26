@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NonNull;
+
 
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -17,14 +17,12 @@ import java.util.Set;
 @Builder(toBuilder = true)
 public class User {
     private int id;
-    @NonNull
     private String email;
-    @NonNull
     private String login;
     private String name;
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
-    private Set<Integer> friends;
+    private final Set<Integer> friends;
 
     public Map<String, Object> toMap() {
         Map<String, Object> values = new HashMap<>();
