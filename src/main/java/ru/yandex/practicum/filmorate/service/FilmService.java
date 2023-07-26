@@ -21,7 +21,6 @@ public class FilmService {
     private final UserStorage userStorage;
 
 
-
     @Autowired
     public FilmService(@Qualifier("FilmDbStorage") FilmStorage filmStorage,
                        @Qualifier("UserDbStorage") UserStorage userStorage) {
@@ -87,6 +86,7 @@ public class FilmService {
         log.info("Список популярных фильмов");
         return filmStorage.getPopular(count);
     }
+
     private void validate(Film film) {
         if (film.getName().isBlank()) {
             log.warn("название фильма не может быть пустым");

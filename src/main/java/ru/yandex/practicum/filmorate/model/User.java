@@ -8,7 +8,6 @@ import lombok.NonNull;
 
 import java.time.LocalDate;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
@@ -26,11 +25,6 @@ public class User {
     @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate birthday;
     private Set<Integer> friends;
-
-    public User() {
-        this.friends = new HashSet<>();
-    }
-
 
     public Map<String, Object> toMap() {
         Map<String, Object> values = new HashMap<>();
