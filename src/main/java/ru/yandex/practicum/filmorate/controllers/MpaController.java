@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.yandex.practicum.filmorate.model.MPA;
 import ru.yandex.practicum.filmorate.service.MpaService;
-import ru.yandex.practicum.filmorate.storage.film.MpaDbStorage;
 
 import java.util.List;
 
@@ -15,8 +14,9 @@ import java.util.List;
 @Slf4j
 @RequestMapping("/mpa")
 public class MpaController {
-   private final MpaService mpaService;
-   public MpaController(MpaService mpaService) {
+    private final MpaService mpaService;
+
+    public MpaController(MpaService mpaService) {
         this.mpaService = mpaService;
     }
 
