@@ -36,14 +36,13 @@ public class FilmService {
 
     public Film update(Film film) {
         validate(film);
-        Film result = filmStorage.update(film);
-        log.info("Movie successfully updated: " + film);
-        return result;
+        log.info("Фильм обновлен: " + film);
+        return filmStorage.update(film);
     }
 
     public void delete(Film film) {
         if (get(film.getId()) == null) {
-            throw new FilmNotFoundException("Movie with ID = " + film.getId() + " not found");
+            throw new FilmNotFoundException("Фильм с ID = " + film.getId() + " не найден");
         }
         filmStorage.delete(film);
     }
