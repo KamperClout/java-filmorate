@@ -29,13 +29,15 @@ public class FilmController {
     @PostMapping("/films")
     public Film create(@RequestBody Film film) {
         log.info("получен запрос POST/films с параметрами {}", film);
-        return filmService.create(film);
+        filmService.create(film);
+        return film;
     }
 
     @PutMapping("/films")
     public Film update(@RequestBody Film film) {
         log.info("получен запрос PUT/films с параметрами {}", film);
-        return filmService.update(film);
+        filmService.update(film);
+        return film;
     }
 
     @DeleteMapping("/films")
