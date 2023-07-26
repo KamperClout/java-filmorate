@@ -76,19 +76,4 @@ public class InMemoryFilmStorage implements FilmStorage {
             throw new ValidationException("продолжительность должна быть положительной");
         }
     }
-
-    @Override
-    public void addLike(int filmId, int userId) {
-
-    }
-
-    @Override
-    public void removeLike(int filmId, int userId) {
-
-    }
-
-    @Override
-    public List<Film> getPopular(Integer count) {
-        return null;
-    }
 }

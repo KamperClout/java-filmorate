@@ -31,6 +31,7 @@ public class UserService {
             user.setName(user.getLogin());
         }
         validate(user);
+        log.info("Пользователь добавлен: " + user);
         return userStorage.create(user);
     }
 
@@ -40,6 +41,7 @@ public class UserService {
         if (user.getName() == null || user.getName().isBlank()) {
             user.setName(user.getLogin());
         }
+        log.info("Пользователь обновлен: " + user);
         return userStorage.update(user);
     }
 
@@ -48,32 +50,40 @@ public class UserService {
             throw new UserNotFoundException("Пользователь с ID = " + user.getId() + " не найден");
         }
         userStorage.delete(user);
+        log.info("Пользователь удален: " + user);
     }
 
     public List<User> findAll() {
+        log.info("Список всех пользователей");
         return userStorage.findAll();
     }
 
     public User get(int id) {
+        log.info("Пользователь с id = " + id + "получен");
         return userStorage.get(id);
     }
 
     public void addFriend(int idUser, int idFriend) {
         validateFoundUser(idUser, idFriend);
         friendshipStorage.addFriend(idUser, idFriend);
+        log.info("Друг успешно добавлен");
     }
 
     public void removeFriend(int idUser, int idFriend) {
         validateFoundUser(idUser, idFriend);
         friendshipStorage.removeFriend(idUser, idFriend);
+        log.info("Друг успешно удален");
     }
 
     public List<User> getMutualFriends(int idUser1, int idUser2) {
         validateFoundUser(idUser1, idUser2);
-        return friendshipStorage.getMutualFriends(idUser1, idUser2);
+        List<User> list = friendshipStorage.getMutualFriends(idUser1, idUser2);
+        log.info("Общие друзья пользователей с ID " + " {} and {} {} ", idUser1, idUser2, list);
+        return list;
     }
 
     public List<User> getFriends(int id) {
+        log.info("Список друзей пользователся с id = " + id);
         return friendshipStorage.getFriends(id);
     }
 

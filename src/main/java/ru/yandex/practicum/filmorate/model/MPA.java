@@ -7,6 +7,6 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class MPA {
-    protected int id;
-    protected String name;
+    private int id;
+    private String name;
 }

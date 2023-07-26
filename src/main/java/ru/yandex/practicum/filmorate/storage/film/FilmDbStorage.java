@@ -10,6 +10,7 @@ import ru.yandex.practicum.filmorate.model.Film;
 import ru.yandex.practicum.filmorate.model.Genre;
 import ru.yandex.practicum.filmorate.model.MPA;
 import ru.yandex.practicum.filmorate.storage.dao.FilmStorage;
+import ru.yandex.practicum.filmorate.storage.dao.LikesStorage;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -19,7 +20,7 @@ import java.util.stream.Collectors;
 
 @Repository("FilmDbStorage")
 @Slf4j
-public class FilmDbStorage implements FilmStorage {
+public class FilmDbStorage implements FilmStorage, LikesStorage {
     private final JdbcTemplate jdbcTemplate;
 
     public FilmDbStorage(JdbcTemplate jdbcTemplate) {
