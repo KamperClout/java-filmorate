@@ -26,7 +26,7 @@ public class Film {
     private Set<Genre> genres;
     private MPA mpa;
     @JsonIgnore
-    final private Set<Integer> likes;
+    private final Set<Integer> likes;
 
 
     public void addLike(Integer id) {
